@@ -1,0 +1,28 @@
+{
+  "action": {
+    "default_title": "HoursUntil",
+    "default_icon": "assets/icon-32.png",
+    "default_popup": "popup/popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "open-popup": {
+      "suggested_key": {
+        "windows": "Ctrl+Shift+H",
+        "mac": "Command+Ctrl+H"
+      },
+      "description": "Will open the popup"
+    }
+  },
+  "description": "Calculate hours until a pre-set time",
+  "host_permissions": [],
+  "icons": {
+    "32": "assets/icon-32.png"
+  },
+  "manifest_version": 3,
+  "name": "HoursUntil",
+  "permissions": [],
+  "version": "1.0"
+}

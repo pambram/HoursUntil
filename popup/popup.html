@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" href="popup.css"/>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'sha256-lxwPozuElLijKXv5dU8UqjWWjftzdsv5bhr13xbaSH4=' 'unsafe-inline'">
+</head>
+<body>
+<main>
+    <div class="container">
+        <h1 class="heading">HoursUntil</h1>
+        <h3 class="sub-heading">Chrome extension to calculate hours until a specific timedate.</h3>
+        <div id="main-content">
+            <div>
+                <label for="meeting-time">Choose a time for your appointment:</label>
+                <input type="datetime-local" id="meeting-time"
+                       name="meeting-time">
+                <button id="calc">CALCULATE</button>
+                <div><label id="result">This is the result</label></div>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<script src="popup.js"></script>
+
+</body>
+</html>
