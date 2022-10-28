@@ -1,18 +1,34 @@
+// ##
+// HoursUntil - A bare-minimum quick tool that, believe it or not, needed quite a few steps to do before this existed...
+// Pablo Ambram - v1 - Oct 2022
+// GNU Public License
+// ####
 //
-//init code
-//
-
-// set the value of the Inputbox to right now
-today = new Date().toISOString().slice(0,16);
-// set other parameters
-document.getElementById('meeting-time').value= today
-document.getElementById('meeting-time').setAttribute('min', today);
-document.getElementById('meeting-time').setAttribute('step', 900);
-//bind the click event to the Calculate button, because of stupid manifest v3 rules I can't put inline event handlers
-// <button id="btn" onclick="doSomething()"></button>
-document.getElementById("calc").addEventListener("click", Calculate);
 
 
+// set the value of the Inputbox to now
+today = new Date().toISOString().slice(0, 16);
+
+// Set minimum and step intervals (these intervals of are only honored if cycling with keyboard up and down through time)
+const inputBox = document.getElementById('meeting-time')
+inputBox.value = today
+inputBox.setAttribute('min', today);
+inputBox.setAttribute('step', 1800);   //30 min interval = 1800s
+
+//Calculate the hours too if Enter is pressed while on the input box
+inputBox.addEventListener("keypress", runScript);
+
+function runScript(e) {
+    if (e.keyCode === 13) {
+        Calculate()
+    } else {
+        return false;
+    }
+}
+
+
+const calcButton = document.getElementById('calc')
+calcButton.addEventListener("click", Calculate);
 
 
 function diff_hours(dt2, dt1) {
@@ -22,18 +38,17 @@ function diff_hours(dt2, dt1) {
 }
 
 function Calculate() {
-    var myTime = document.getElementById("meeting-time");
-    var str = myTime.value;
-    var d = new Date(str);
+    var fd = new Date(inputBox.value);
 
     dt1 = new Date();
-    dt2=d
+    dt2 = fd
 
     let result = diff_hours(dt1, dt2);
 
-    var randomColor = Math.floor(Math.random()*16777215).toString(16);
-
-    document.getElementById('result').innerHTML = result + ' hours';
-    document.getElementById('result').setAttribute('style',
-        'color:#'+randomColor)
+    // It makes it easier (to my eyes) to have a random colored output every time I run the calc, so I know
+    // when the previous result shown is no longer current. Maybe it's not needed... but it's nice, in a way.
+    const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+    const resultLabel = document.getElementById('result')
+    resultLabel.innerHTML = result + ' hours';
+    resultLabel.setAttribute('style', 'color:#' + randomColor)
 }
