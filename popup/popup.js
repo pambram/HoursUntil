@@ -20,25 +20,57 @@ inputBox.addEventListener("keypress", runScript);
 
 function runScript(e) {
     if (e.keyCode === 13) {
-        Calculate()
+        Calculate(new Date(inputBox.value))
     } else {
         return false;
     }
 }
 
 
-const calcButton = document.getElementById('calc')
-calcButton.addEventListener("click", Calculate);
+function addHours(numOfHours, date = new Date()) {
+    let tempCorr = 0;
+
+    if (numOfHours < 0) {
+        tempCorr = 24
+        // numOfHours=Math.abs(numOfHours);
+        visibility = 'visible'
+    }
+    date.setTime(date.getTime() + (tempCorr + numOfHours) * 60 * 60 * 1000);
+    return date;
+}
 
 
-function diff_hours(dt2, dt1) {
-    var diff = (dt2.getTime() - dt1.getTime()) / 1000;
+//Bind all the calculation buttons to the Calculate function
+let calculateButtons = []
+calculateButtons = document.getElementsByClassName('Calculate');
+
+for (let i = 0; i < calculateButtons.length; i++) {
+    if (calculateButtons[i].dataset.starttimeutc) {
+        const shiftHour = calculateButtons[i].dataset.starttimeutc;
+        const thisDate = new Date();
+        let fd = new Date(addHours(shiftHour - thisDate.getHours()));
+
+        calculateButtons[i].addEventListener("click", () => {
+            Calculate(fd);
+        });
+    } else {
+        calculateButtons[i].addEventListener("click", () => {
+            Calculate();
+        });
+    }
+}
+
+//const calcButton = document.getElementById('calc')
+
+
+function diff_hours(dt1, dt2) {
+    var diff = (dt1.getTime() - dt2.getTime()) / 1000;
     diff /= (60 * 60);
     return Math.abs(Math.round(diff));
 }
 
-function Calculate() {
-    var fd = new Date(inputBox.value);
+function Calculate(futureDate) {
+    let fd = futureDate || new Date(inputBox.value);
 
     dt1 = new Date();
     dt2 = fd

@@ -2,7 +2,8 @@
 <html>
 <head>
     <link rel="stylesheet" href="popup.css"/>
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'sha256-lxwPozuElLijKXv5dU8UqjWWjftzdsv5bhr13xbaSH4=' 'unsafe-inline'">
+    <meta http-equiv="Content-Security-Policy"
+          content="script-src 'self' 'sha256-lxwPozuElLijKXv5dU8UqjWWjftzdsv5bhr13xbaSH4=' 'unsafe-inline'">
 </head>
 <body>
 <main>
@@ -12,10 +13,31 @@
         <div id="main-content">
             <div>
                 <label for="meeting-time">Choose a time for your appointment:</label>
+                <br/>
                 <input type="datetime-local" id="meeting-time"
                        name="meeting-time">
-                <button id="calc">CALCULATE</button>
-                <div><label id="result">This is the result</label></div>
+                <button id="calc" class="Calculate">CALCULATE</button>
+                <div><label id="result">This is the result</label><label id="plusone">(+1)</label></div>
+            </div>
+            <div>
+                <p>Or, choose a pre-set shift to calculate hours until it next starts</p>
+                <div>
+                    <button id="calc_s1" class="Calculate" data-starttimeUTC="1">S1</button>
+                    <label for="calc_s1">01:00am UTC</label>
+                </div>
+                <div>
+                    <button id="calc_s2" class="Calculate" data-starttimeUTC="7">S2</button>
+                    <label for="calc_s2">07:00am UTC</label>
+                </div>
+                <div>
+                    <button id="calc_s3" class="Calculate" data-starttimeUTC="13">S3</button>
+                    <label for="calc_s3">01:00pm UTC</label>
+                </div>
+                <div>
+                    <button id="calc_s4" class="Calculate" data-starttimeUTC="19">S4</button>
+                    <label for="calc_s4">07:00pm UTC</label>
+                </div>
+
             </div>
 
         </div>
