@@ -3,7 +3,7 @@ Chrome plugin to calculate the number of hours until a specific datetime, from r
 
 It needs your PC clock to be in UTC to be accurate if you'll use the S1-S4 buttons (not much so if you use Calculate).                             
 
-Installation:
+## Installation:
 - Clone the repo to your local filesystem
 - Go to your Chrome manage extensions page (chrome://extensions/)
 - Make sure Developer Mode is enabled (on the top right)
@@ -12,7 +12,7 @@ Installation:
 - Ignore the errors... (or fork'em, fix'em and pull'em)
 
 
-Usage:
+## Usage:
 - Press the plugin icon
 ![img.png](assets/readme.png)
 - Choose a time and press Calculate, or press one of the preset shifts
